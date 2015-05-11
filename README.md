@@ -1,6 +1,6 @@
 ## react-native-asciimage
 
-This provides an `<ASCIImage/>` component for react-native, powered by the excellent [ASCIImage](http://asciimage.org/) by @cparnot. It allows you to generate and insert images into your react-native app using ASCII art to describe images (useful for small icons in UI elements).
+Provides an `<ASCIImage />` component for react-native, powered by the excellent [ASCIImage](http://asciimage.org/) by @cparnot. It allows you to generate and insert images into your react-native app using ASCII art to describe images (useful for small icons in UI elements).
 
 ## Installation
 
@@ -61,8 +61,8 @@ Result:
 
 The following properties are used:
 
-- **`ascii`** _(Array)_ REQUIRED - an array of string
-- **`color`** _(String)_ the color value to use for the foreground, e.g. "#0000FF" or "rgba(0, 255, 0, 0.5)". Default: "#000000"
+- **`ascii`** _(Array)_ REQUIRED - an array of strings representing rows of the image (see the ASCIImage [documention](https://github.com/cparnot/ASCIImage) for details)
+- **`color`** _(String)_ the color value to use for the foreground, e.g. `#0000FF` or `rgba(0, 255, 0, 0.5)`. Default: `#000000`
 
 ## Known Issues
 
