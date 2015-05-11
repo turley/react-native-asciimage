@@ -34,9 +34,9 @@ var myImage = [
   '· · · 6 5 · · · · · '
 ]
 
-class App extends React.Component {
+var App = React.createClass({
 
-  render() {
+  render: function() {
     return (
       <View>
         <Text>
@@ -47,10 +47,13 @@ class App extends React.Component {
     );
   }
 
-}
+});
 
 AppRegistry.registerComponent('App', () => App);
 ```
+
+Result:
+
 ![Example image](https://raw.githubusercontent.com/turley/react-native-asciimage/master/example.png)
 
 
