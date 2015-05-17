@@ -25,14 +25,14 @@
 
 - (instancetype)init
 {
-    self = [super init];
+    self = [super initWithFrame:CGRectZero];
     if (self) {
         for (NSString *key in OBSERVED_KEYS) {
             [self addObserver:self forKeyPath:key options:0 context:nil];
         }
         
         self.color = DEFAULT_COLOR;
-        _imageView = [[UIImageView alloc] init];
+        _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [_imageView setContentMode:UIViewContentModeScaleAspectFit];
         [self addSubview:_imageView];
         
@@ -47,7 +47,7 @@
 
 - (void)updateASCIImage
 {
-    [_imageView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [_imageView setFrame:self.bounds];
     [_imageView setImage:[PARImage imageWithASCIIRepresentation:_ascii scaleFactor:[self bestScale] color:self.color shouldAntialias:YES]];
 }
 
@@ -61,12 +61,6 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    CGRect frame = self.frame;
-    if ((frame.size.width <= 0 || frame.size.height <= 0) && self.ascii != nil && self.ascii.firstObject != nil) {
-        frame.size.width = [(NSString*)self.ascii.firstObject length];
-        frame.size.height = [self.ascii count];
-        self.frame = frame;
-    }
     [self updateASCIImage];
 }
 
