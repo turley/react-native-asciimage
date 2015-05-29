@@ -20,6 +20,16 @@ typedef enum {
 
 @implementation ASCIImageCommon
 
+RCT_EXPORT_MODULE()
+
+
+RCT_EXPORT_METHOD(defaultImageDimensionsFromASCII:(NSArray*)ascii callback:(RCTResponseSenderBlock)dimensionsCallback)
+{
+    NSArray *strictRep = [PARImage strictASCIIRepresentationFromLenientASCIIRepresentation:ascii];
+    NSNumber *width = [NSNumber numberWithFloat:[[strictRep firstObject] length]];
+    NSNumber *height = [NSNumber numberWithFloat:[strictRep count]];
+    dimensionsCallback(@[@[width, height]]);
+}
 
 + (PARImage*)imageFromASCII:(NSArray*)ascii scaleFactor:(CGFloat)scale defaultColor:(UIColor*)color contextOptions:(NSArray*)contextOptions
 {

@@ -9,16 +9,22 @@ var ASCIImage = React.createClass({
     style: React.View.propTypes.style,
   },
 
-  render: function() {
-    var defaultDimensions = [0, 0];
-    if (this.props.ascii && this.props.ascii.length > 0) {
-      defaultDimensions[0] = this.props.ascii[0].length;
-      defaultDimensions[1] = this.props.ascii.length;
-    }
+  getInitialState: function() {
+    return { defaultDimensions: [0, 0] }
+  },
 
+  updateDimensions: function(dimensions) {
+    this.setState({ defaultDimensions: dimensions });
+  },
+
+  componentWillMount: function() {
+    ASCIImage.Common.defaultImageDimensionsFromASCII(this.props.ascii, this.updateDimensions);
+  },
+
+  render: function() {
     return (
       <RNASCIImage
-        style={[{ width: defaultDimensions[0], height: defaultDimensions[1]}, this.props.style]}
+        style={[{ width: this.state.defaultDimensions[0], height: this.state.defaultDimensions[1]}, this.props.style]}
         ascii={this.props.ascii}
         color={this.props.color}
         contextOptions={this.props.contextOptions}
@@ -30,5 +36,6 @@ var ASCIImage = React.createClass({
 
 var RNASCIImage = React.requireNativeComponent('RCTASCIImage', ASCIImage);
 ASCIImage.Writer = require('NativeModules').ASCIImageWriter;
+ASCIImage.Common = require('NativeModules').ASCIImageCommon;
 
 module.exports = ASCIImage;

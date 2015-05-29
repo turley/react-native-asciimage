@@ -56,7 +56,7 @@
     
     if (strictRep != nil) {
         NSUInteger imgWidth = [(NSString*)strictRep.firstObject length] * [UIScreen mainScreen].scale;
-        return (ceil(self.frame.size.width / imgWidth) + 1.0) * [UIScreen mainScreen].scale;
+        return ceil(self.frame.size.width / imgWidth) * [UIScreen mainScreen].scale;
     }
     return [UIScreen mainScreen].scale;
 }

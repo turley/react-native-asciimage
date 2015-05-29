@@ -7,8 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "PARImage+ASCIIInput.h"
+#import <RCTBridgeModule.h>
 
-@interface ASCIImageCommon : NSObject
+@interface ASCIImageCommon : NSObject <RCTBridgeModule>
 
 + (PARImage*)imageFromASCII:(NSArray*)ascii scaleFactor:(CGFloat)scale defaultColor:(UIColor*)color contextOptions:(NSArray*)contextOptions;
 
