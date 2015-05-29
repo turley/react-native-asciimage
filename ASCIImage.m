@@ -6,10 +6,9 @@
 //
 
 #import "ASCIImage.h"
-#import "PARImage+ASCIIInput.h"
+#import "ASCIImageCommon.h"
 
-#define DEFAULT_COLOR [UIColor blackColor]
-#define OBSERVED_KEYS @[NSStringFromSelector(@selector(ascii)), NSStringFromSelector(@selector(color))]
+#define OBSERVED_KEYS @[NSStringFromSelector(@selector(ascii)), NSStringFromSelector(@selector(color)), NSStringFromSelector(@selector(contextOptions))]
 
 @interface ASCIImage () {
     UIImageView *_imageView;
@@ -17,6 +16,7 @@
 
 @property (nonatomic, strong) NSArray *ascii;
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) NSArray *contextOptions;
 
 @end
 
@@ -31,7 +31,6 @@
             [self addObserver:self forKeyPath:key options:0 context:nil];
         }
         
-        self.color = DEFAULT_COLOR;
         _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [_imageView setContentMode:UIViewContentModeScaleAspectFit];
         [self addSubview:_imageView];
@@ -48,14 +47,18 @@
 - (void)updateASCIImage
 {
     [_imageView setFrame:self.bounds];
-    [_imageView setImage:[PARImage imageWithASCIIRepresentation:_ascii scaleFactor:[self bestScale] color:self.color shouldAntialias:YES]];
+    [_imageView setImage:[ASCIImageCommon imageFromASCII:_ascii scaleFactor:[self bestScale] defaultColor:_color contextOptions:_contextOptions]];
 }
 
 - (CGFloat)bestScale
 {
-    NSUInteger imgWidth = 0;
-    if (self.ascii != nil && self.ascii.firstObject != nil) imgWidth = [(NSString*)self.ascii.firstObject length];
-    return (ceil(self.frame.size.width / imgWidth) + 1.0) * [UIScreen mainScreen].scale;
+    NSArray *strictRep = [PARImage strictASCIIRepresentationFromLenientASCIIRepresentation:self.ascii];
+    
+    if (strictRep != nil) {
+        NSUInteger imgWidth = [(NSString*)strictRep.firstObject length] * [UIScreen mainScreen].scale;
+        return (ceil(self.frame.size.width / imgWidth) + 1.0) * [UIScreen mainScreen].scale;
+    }
+    return [UIScreen mainScreen].scale;
 }
 
 - (void)layoutSubviews

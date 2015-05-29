@@ -1,7 +1,7 @@
 {
   "name": "react-native-asciimage",
   "description": "An ASCIImage component for React Native",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/turley/react-native-asciimage.git"

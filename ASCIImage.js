@@ -5,6 +5,7 @@ var ASCIImage = React.createClass({
   propTypes: {
     ascii: React.PropTypes.arrayOf(React.PropTypes.string),
     color: React.PropTypes.string,
+    contextOptions: React.PropTypes.arrayOf(React.PropTypes.object),
     style: React.View.propTypes.style,
   },
 
@@ -20,6 +21,7 @@ var ASCIImage = React.createClass({
         style={[{ width: defaultDimensions[0], height: defaultDimensions[1]}, this.props.style]}
         ascii={this.props.ascii}
         color={this.props.color}
+        contextOptions={this.props.contextOptions}
       />
     );
   }
@@ -27,5 +29,6 @@ var ASCIImage = React.createClass({
 });
 
 var RNASCIImage = React.requireNativeComponent('RCTASCIImage', ASCIImage);
+ASCIImage.Writer = require('NativeModules').ASCIImageWriter;
 
 module.exports = ASCIImage;

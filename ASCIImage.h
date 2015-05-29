@@ -5,7 +5,8 @@
 //  Copyright (c) 2015 Ben Turley. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "PARImage+ASCIIInput.h"
 
 @interface ASCIImage : UIView
 
