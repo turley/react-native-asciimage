@@ -1,7 +1,7 @@
 {
   "name": "react-native-asciimage",
   "description": "An ASCIImage component for React Native",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/turley/react-native-asciimage.git"
@@ -11,8 +11,8 @@
     "name": "Ben Turley"
   },
   "license": "MIT",
-  "dependencies": {
-    "react-native": "^0.4.0"
+  "peerDependencies": {
+    "react-native": ">=0.4.0"
   },
   "keywords": [
     "react-native",

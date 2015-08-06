@@ -81,7 +81,7 @@ For advanced options (which would normally be passed in via the `contextOptions`
 ```
 var options = [
   { fillColor: "rgba(0, 0, 0, 0)", lineWidth: 5 }, // First shape
-  { fillColor: "0000ff" } // Second shape
+  { fillColor: "#0000ff" } // Second shape
 ];
 
 ASCIImageWriter.createImageFromASCIIWithOptions(myImage, '#ffffff', 40, options, function(imageURI) {
